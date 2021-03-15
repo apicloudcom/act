@@ -36,6 +36,7 @@ export default {
 <style scoped>
 .a-cell-group {
   background-color: #FFF;
+  border:0.5px solid #ebedf0;
 }
 
 .a-cell-group--round {
