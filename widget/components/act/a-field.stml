@@ -54,15 +54,14 @@ export default {
       }
 
       return h(ACell, {
+            ...props,
             title: props.label,
+            label: '',
             class: mixedClass(`a-field ${props.class || ''} `, {
               'a-field--disabled': props.disabled
             }),
             icon: props['left-icon'],
             style: `${props.style || ''} `,
-            required: props.required,
-            center: props.center,
-            size: props.size,
             'label-width': props['label-width'] || 88,
             'label-align': props['label-align'] || 'left'
           },

@@ -11,12 +11,11 @@ export default {
 
       const isLarge = props.size === 'large' || props.large;
       const isField = props.class && props.class.includes('a-field');
-      console.log(props['label-width']);
 
       (Array.isArray(props.children) && props.children.length === 1 && typeof props.children[0] === 'string') && (props.title = props.children);
 
       return slotSupport(h('view', {
-            class: mixedClass(`a-cell a-cell__root ${props.class} ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
+            class: mixedClass(`a-cell a-cell__root ${props.class||''} ${props.__last ? 'a-cell__-last' : 'a-cell__-not-last'}`, {
               'a-cell--large': isLarge,
               'a-cell--center': props.center
             }),
@@ -41,7 +40,7 @@ export default {
                 })
               }, props.label))
               :
-              h('view', {class: 'a-cell__title', style: ' flex-direction: row;', _slot: 'title'}),
+              h('view', {class: 'a-cell__title', style: ' flex-direction: row;flex:1;', _slot: 'title'}),
           h('text', {
             class: mixedClass('a-cell__value', {
               'a-cell__value--alone': !props.title
