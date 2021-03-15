@@ -50,6 +50,7 @@ export default {
 
 <style scoped>
 .page {
+  height: 100%;
   flex: 1;
   background-color: #F8F8F8;
 }
