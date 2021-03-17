@@ -12,6 +12,8 @@
             left-arrow
             @click-left="onClickLeft"
             @click-right="onClickRight"
+            title-size="18"
+            height="44"
         />
       </view>
 

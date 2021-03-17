@@ -7,6 +7,7 @@ export {Toast};
  * 插槽支持
  * @param VNode
  * @param children
+ * @param host
  */
 export function slotSupport(VNode, children, host) {
 
@@ -15,10 +16,10 @@ export function slotSupport(VNode, children, host) {
     };
 
     const dfsScope = node => {
-        if (node.nodeName === 'text') {
+        if (node.nodeName === 'text' && node.attributes) {
             const text = node.children[0];
             if (node.attributes.scoped || (typeof text === 'string' && text.startsWith('[[') && text.endsWith(']]'))) {
-                let path = text.replace(/[\[\]]/g, '').split(/[\.\[]/);
+                let path = text.replace(/[\[\]]/g, '').split(/[.[]/);
                 if (node.attributes.scoped) {
                     path = node.attributes.scoped;
                 } else {
@@ -166,7 +167,7 @@ export function syncModel() {
     let {_host} = this;
     Object.entries(props).forEach(([k, v]) => {
         if (k.startsWith('$')) {
-            const path = v.replace(/]/g, '').split(/[\.\[]/);
+            const path = v.replace(/]/g, '').split(/[.[]/);
             while (typeof _host.data[path[0]] === 'undefined') {
                 if (_host._host) {
                     _host = _host._host;
@@ -199,7 +200,7 @@ export function dateFormat(fmt, date) {
     for (let k in opt) {
         ret = new RegExp("(" + k + ")").exec(fmt);
         if (ret) {
-            fmt = fmt.replace(ret[1], (ret[1].length == 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
+            fmt = fmt.replace(ret[1], (ret[1].length === 1) ? (opt[k]) : (opt[k].padStart(ret[1].length, "0")))
         }
     }
     return fmt;

@@ -1,7 +1,7 @@
 <template name="a-nav-bar">
   superNode(
   <safe-area class="a-nav-bar">
-    <view class="a-nav-bar__content">
+    <view class="a-nav-bar__content" :style="`height: ${this.props['height']||46}px`">
 
       <view class="a-nav-bar__click-warp a-nav-bar__left" _slot="left" @click="leftClick">
         {
@@ -14,7 +14,7 @@
         }
       </view>
 
-      <text class="a-nav-bar__title">
+      <text class="a-nav-bar__title" :style="`font-size: ${this.props['title-size']||16}px`">
         {this.props['title']}
       </text>
 
@@ -69,7 +69,6 @@ export default {
 
 .a-nav-bar__content {
   flex-flow: row nowrap;
-  height: 46px;
 }
 
 
@@ -94,7 +93,6 @@ export default {
   align-self: center;
   text-align: center;
   font-weight: 500;
-  font-size: 16px;
   white-space: nowrap;
   text-overflow: ellipsis;
   overflow: hidden;

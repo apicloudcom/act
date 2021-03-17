@@ -1313,6 +1313,9 @@ export default {
 | left-text | 左侧文案 | _string_ | `''` |
 | right-text | 右侧文案 | _string_ | `''` |
 | left-arrow | 是否显示左侧箭头 | _boolean_ | `false` |
+| title-size | 标题字号 | _number_ | `16` |
+| height | 导航栏高度 | _number_ | `46` |
+
 
 ### Slots
 
