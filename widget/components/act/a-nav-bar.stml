@@ -6,7 +6,7 @@
       <view class="a-nav-bar__click-warp a-nav-bar__left" _slot="left" @click="leftClick">
         {
         this.props['left-arrow'] &&
-        <a-icon name="arrow-left" class="a-nav-bar__icon" color="#333"/>
+        <a-icon name="arrow-left" class="a-nav-bar__icon" color="#333" />
         }
         {
         this.props['left-text'] &&
@@ -14,9 +14,11 @@
         }
       </view>
 
-      <text class="a-nav-bar__title" :style="`font-size: ${this.props['title-size']||16}px`">
-        {this.props['title']}
-      </text>
+      <view class="a-nav-bar__view">
+        <text class="a-nav-bar__title" :style="`font-size: ${this.props['title-size']||16}px`">
+          {this.props['title']}
+        </text>
+      </view>
 
 
       <view class="a-nav-bar__click-warp a-nav-bar__right" _slot="right" @click="rightClick">
@@ -30,71 +32,85 @@
 </template>
 
 <script>
+  import AIcon from "./a-icon.stml";
+  import {
+    superNode
+  } from "./index";
 
-import AIcon from "./a-icon.stml";
-import {superNode} from "./index";
-
-export default {
-  name: "a-nav-bar",
-  components: {AIcon},
-  install() {
-    api.setStatusBarStyle && api.setStatusBarStyle({
-      style: 'dark', color: '-'
-    });
-  },
-  methods: {
-    leftClick(e) {
-      if (this.props['onClick-left']) {
-        // this.props['onClick-left'](e)
-        this.fire('click-left', e);
-      } else {
-        api.closeWin();
-      }
+  export default {
+    name: "a-nav-bar",
+    components: {
+      AIcon
     },
-    rightClick(e) {
-      // typeof this.props['onClick-right'] === "function" && this.props['onClick-right'](e)
-      this.fire('click-right', e);
+    install() {
+      api.setStatusBarStyle && api.setStatusBarStyle({
+        style: 'dark',
+        color: '-'
+      });
+    },
+    methods: {
+      leftClick(e) {
+        if (this.props['onClick-left']) {
+          // this.props['onClick-left'](e)
+          this.fire('click-left', e);
+        } else {
+          api.closeWin();
+        }
+      },
+      rightClick(e) {
+        // typeof this.props['onClick-right'] === "function" && this.props['onClick-right'](e)
+        this.fire('click-right', e);
+      }
     }
   }
-}
-
 </script>
 
 <style scoped>
+  .a-nav-bar {
+    background-color: #fff;
+    box-shadow: 1px 1px 1px #e6e6e6;
+  }
 
-.a-nav-bar {
-  background-color: #fff;
-  box-shadow: 1px 1px 1px #e6e6e6;
-}
-
-.a-nav-bar__content {
-  flex-flow: row nowrap;
-}
+  .a-nav-bar__content {
+    flex-flow: row nowrap;
+  }
 
 
-.a-nav-bar__click-warp {
-  flex-flow: row nowrap;
-  align-items: center;
-  padding: 0 16px;
-}
+  .a-nav-bar__click-warp {
+    flex-flow: row nowrap;
+    align-items: center;
+    padding: 0 16px;
+  }
 
-.a-nav-bar__text {
-  color: #333;
-  font-size: 14px;
-}
+  .a-nav-bar__text {
+    color: #333;
+    font-size: 14px;
+  }
 
-.a-nav-bar__icon {
-  height: 16px;
-  width: 16px;
-}
+  .a-nav-bar__icon {
+    height: 16px;
+    width: 16px;
+  }
 
-.a-nav-bar__title {
-  flex: 1;
-  align-self: center;
-  text-align: center;
-  font-weight: 500;
-  white-space: nowrap;
-  text-overflow: ellipsis;
-  overflow: hidden;
-}
+  .a-nav-bar__view {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 33;
+    align-self: center;
+    text-align: center;
+  }
+
+  .a-nav-bar__title {
+    flex: 1;
+    align-self: center;
+    text-align: center;
+    font-weight: 500;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+
+  }
 </style>
