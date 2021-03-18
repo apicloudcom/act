@@ -1316,7 +1316,6 @@ export default {
 | title-size | 标题字号 | _number_ | `16` |
 | height | 导航栏高度 | _number_ | `46` |
 
-
 ### Slots
 
 | 名称  | 说明               |
@@ -1330,6 +1329,10 @@ export default {
 | ----------- | ------------------ | ------------------- |
 | click-left  | 点击左侧按钮时触发 | _event: MouseEvent_ |
 | click-right | 点击右侧按钮时触发 | _event: MouseEvent_ |
+
+### ` Tips `
+
+本组件基于  ` safe-area ` 实现，无需再为其包裹 ` safe-area ` 即可自动适配状态栏。
 
 # Popup 弹出层
 
